@@ -45,10 +45,19 @@ function App() {
         setData([newItem, ...data]);
     };
 
+    // 일기 삭제
+    const onRemove = (targetId) => {
+        console.log(`${targetId}번째 일기가 삭제되었습니다.`);
+        // targetId를 포함하지 않는 데이터만 배열로 바꿔서!
+        const newDiaryList = data.filter((it) => it.id !== targetId);
+        console.log(newDiaryList);
+        setData(newDiaryList);
+    };
+
     return (
         <div className="App">
             <DiaryEditor onCreate={onCreate} />
-            <DiaryList dairyList={data} />
+            <DiaryList onRemove={onRemove} dairyList={data} />
         </div>
     );
 }
